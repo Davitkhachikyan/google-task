@@ -11,14 +11,20 @@
 </head>
 <body>
 
-<form method="post" action="{{route('update')}}">
-    @csrf
-    <input type="hidden" name="id" value={{$post->id}}>
-    <input type="text" name="title" value="{{$post->title}}">Title<br><br>
-    <input type="text" name="description" value="{{$post->description}}">Description<br><br>
-    <input type="text" name="text" value="{{$post->text}}">Text<br><br>
-    <button type="submit">Update</button>
+<form>
+    <input style="margin-left: 5px; margin-bottom: 5px; border-radius: 5px" type="button" value="Go back!"
+           onclick="history.back()">
 </form>
+<div>
+    <form method="post" action="{{route('update')}}">
+        @csrf
+        <input type="hidden" name="id" value={{$post->id}}>
+        <input type="text" name="title" value="{{$post->title}}">Title<br><br>
+        <input type="text" name="description" value="{{$post->description}}">Description<br><br>
+        <input type="text" name="text" value="{{$post->text}}">Text<br><br>
+        <button style="border-radius: 5px" type="submit">Update</button>
+    </form>
+</div>
 </body>
 </html>
 

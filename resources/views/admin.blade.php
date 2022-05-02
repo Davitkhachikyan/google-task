@@ -38,15 +38,15 @@
         <td> {{$post->title}}</td>
         <td>{{$post->description}}</td>
         <td>{{$post->text}}</td>
-        <td><a href="{{route('images-page', ['id' => $post->id])}}">Images</a></td>
-        <td><a href="{{route('delete-post',['id'=>$post->id])}}">Delete</a> </td>
-        <td><a href="{{route('update-post-page', ['id' => $post->id])}}">Edit</a></td>
+        <td><a style=" text-decoration: none" class="href" href="{{route('images-page', ['id' => $post->id])}}">Images</a></td>
+        <td><a style=" text-decoration: none" class="href" href="{{route('delete-post',['id'=>$post->id])}}">Delete</a> </td>
+        <td><a style=" text-decoration: none" class="href" href="{{route('update-post-page', ['id' => $post->id])}}">Edit</a></td>
         @endforeach
     </tr>
     </tbody>
 </table>
 </body>
-<button class="button"><a href={{route('add-post-page')}}>Add Product</a></button>
+<button style="border-radius: 5px" class="button"><a style="text-decoration: none; color: black" href={{route('add-post-page')}}>Add Product</a></button>
 </html>
 <style>
     .button {
@@ -59,5 +59,6 @@
     background-color: #555555;
     color: white;
     }
+
 </style>
 @endsection

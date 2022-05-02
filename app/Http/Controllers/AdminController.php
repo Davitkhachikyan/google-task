@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Image;
+
 use App\Models\Post;
-use Illuminate\Http\Request;
-use function Sodium\compare;
+
 
 class AdminController extends Controller
 {
@@ -19,7 +18,6 @@ class AdminController extends Controller
     {
         $posts = Post::all();
         return view('admin', compact('posts'));
-
     }
 
     public function add_post()
@@ -32,6 +30,7 @@ class AdminController extends Controller
         $post = Post::find($id);
         return view('layouts.update_post', compact('post'));
     }
+
     public function create_image($id)
     {
         return view('layouts.update_image', compact('id'));

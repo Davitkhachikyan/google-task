@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StorePostRequest;
 use App\Models\Image;
 use App\Models\Post;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use function GuzzleHttp\Promise\all;
+
 
 class PostController extends Controller
 {
@@ -18,21 +18,29 @@ class PostController extends Controller
 
     public function index()
     {
-        $posts = Post::all();
         return view();
     }
 
-    public function create(Request $request) {
+    public function create(Request $request)
+    {
         $post = new Post();
-        $data = request()->all();
-        $post->text = $request->text;
-        $post->title = $request->title;
-        $post->description = $request->description;
+        $data = $request->validate([
+            'title' => 'required|min:5|max:15',
+            'description' => 'required|min:5|max:25',
+            'text' => 'required|min:5|max:255'
+        ]);
+        if (isset($request->text)) {
+            $post->text = $request->text;
+        }
+        if (isset($request->title)) {
+            $post->title = $request->title;
+        }
+        if (isset($request->description)) {
+            $post->description = $request->description;
+        }
         $post->save();
-        if(isset($data['image']))
-        {
-            foreach ($data['image'] as $img)
-            {
+        if (isset($data['image'])) {
+            foreach ($data['image'] as $img) {
                 $name = $img->getClientOriginalName();
 
                 $destinationPath = public_path('images');
@@ -49,15 +57,19 @@ class PostController extends Controller
     public function update(Request $request)
     {
 
-        $post = Post::find($request->id);
+        if (isset($request->id)) {
+            $post = Post::find($request->id);
+        }
         $data = $request->all();
-        $post->update($data);
+        if (isset($post)) {
+            $post->update($data);
+        }
         return redirect('admin');
     }
 
-    public function delete($id)
+    public function delete($id): RedirectResponse
     {
-        $post = Post::where('id', $id)->delete();
+        Post::where('id', $id)->delete();
         return redirect()->back();
     }
 
