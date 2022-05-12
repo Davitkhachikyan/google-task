@@ -16,7 +16,7 @@
 </form>
 @foreach($images as $image)
     <div style="float: left; padding: 5px">
-        <img src="/images/{{$image['name'] }}" style="width: 300px; height: 250px">
+        <img src="/storage/images/{{$image['name'] }}" style="width: 300px; height: 250px">
     </div>
 </body>
 </html>

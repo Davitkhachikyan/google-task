@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePostRequest;
 use App\Models\Image;
 use App\Models\Post;
 use Illuminate\Http\RedirectResponse;
@@ -10,7 +11,6 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('auth');
@@ -21,14 +21,10 @@ class PostController extends Controller
         return view();
     }
 
-    public function create(Request $request)
+    public function create(StorePostRequest $request)
     {
         $post = new Post();
-        $data = $request->validate([
-            'title' => 'required|min:5|max:15',
-            'description' => 'required|min:5|max:25',
-            'text' => 'required|min:5|max:255'
-        ]);
+        $data = $request->validated();
         if (isset($request->text)) {
             $post->text = $request->text;
         }
@@ -42,21 +38,20 @@ class PostController extends Controller
         if (isset($data['image'])) {
             foreach ($data['image'] as $img) {
                 $name = $img->getClientOriginalName();
-
-                $destinationPath = public_path('images');
-                $img->move($destinationPath, $name);
+                $destinationPath = 'public/images';
+                $img->storeAs($destinationPath, $name);
                 $image = new Image();
                 $image->name = $name;
                 $image->post_id = $post->id;
                 $image->save();
             }
+
         }
         return redirect('admin');
     }
 
     public function update(Request $request)
     {
-
         if (isset($request->id)) {
             $post = Post::find($request->id);
         }
@@ -72,6 +67,4 @@ class PostController extends Controller
         Post::where('id', $id)->delete();
         return redirect()->back();
     }
-
-
 }

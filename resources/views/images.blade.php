@@ -24,7 +24,7 @@
 
 @foreach($images as $image)
     <div style="margin: 10px ">
-        <img src="../images/{{$image['name'] }}" style="width: 300px; height: 250px">
+        <img src="../storage/images/{{$image['name'] }}" style="width: 300px; height: 250px">
         <button style="border-radius: 5px"><a style="text-decoration: none; color: black" href="{{route('delete-image', ['id' => $image['id']])}}">Delete</a></button>
     </div>
 @endforeach

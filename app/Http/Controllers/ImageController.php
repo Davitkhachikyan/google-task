@@ -28,8 +28,8 @@ class ImageController extends Controller
         $data = request()->all();
         foreach ($data['image'] as $img) {
             $name = $img->getClientOriginalName();
-            $destinationPath = public_path('images');
-            $img->move($destinationPath, $name);
+            $destinationPath = 'public/images';
+            $img->storeAs($destinationPath, $name);
             $image = new Image();
             $image->name = $name;
             $image->post_id = $post_id;
