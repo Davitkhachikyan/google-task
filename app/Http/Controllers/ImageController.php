@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Image;
 use App\Models\Post;
+use App\Services\FileUploadService;
 
 
 class ImageController extends Controller
@@ -24,17 +25,9 @@ class ImageController extends Controller
 
     public function create($id)
     {
-        $post_id = $id;
         $data = request()->all();
-        foreach ($data['image'] as $img) {
-            $name = $img->getClientOriginalName();
-            $destinationPath = 'public/images';
-            $img->storeAs($destinationPath, $name);
-            $image = new Image();
-            $image->name = $name;
-            $image->post_id = $post_id;
-            $image->save();
-        }
+        $img = new FileUploadService();
+        $img->uploadImages($data['image'], $id);
         return redirect('admin');
     }
 

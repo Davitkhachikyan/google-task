@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePostRequest;
 use App\Models\Image;
 use App\Models\Post;
+use App\Services\FileUploadService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -36,16 +37,8 @@ class PostController extends Controller
         }
         $post->save();
         if (isset($data['image'])) {
-            foreach ($data['image'] as $img) {
-                $name = $img->getClientOriginalName();
-                $destinationPath = 'public/images';
-                $img->storeAs($destinationPath, $name);
-                $image = new Image();
-                $image->name = $name;
-                $image->post_id = $post->id;
-                $image->save();
-            }
-
+            $img = new FileUploadService();
+            $img->uploadImages($data['image'], $post->id);
         }
         return redirect('admin');
     }
