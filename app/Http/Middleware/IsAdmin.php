@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+
 class IsAdmin
 {
     /**
@@ -20,7 +21,6 @@ class IsAdmin
         if (Auth::user() &&  Auth::user()->type == 1) {
             return $next($request);
         }
-
         return redirect('home')->with('error','You have not admin access');
     }
 }

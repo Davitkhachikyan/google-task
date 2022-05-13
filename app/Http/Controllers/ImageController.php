@@ -8,7 +8,6 @@ use App\Services\FileUploadService;
 
 
 class ImageController extends Controller
-
 {
     public function __construct()
     {
@@ -19,7 +18,6 @@ class ImageController extends Controller
     {
         $id = $_GET['id'];
         $images = Post::find($id)->images()->get()->toArray();
-
         return view('images', compact('images', 'id'));
     }
 

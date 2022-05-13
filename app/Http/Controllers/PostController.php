@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePostRequest;
-use App\Models\Image;
 use App\Models\Post;
 use App\Services\FileUploadService;
 use Illuminate\Http\RedirectResponse;
@@ -15,11 +14,6 @@ class PostController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-    }
-
-    public function index()
-    {
-        return view();
     }
 
     public function create(StorePostRequest $request)
