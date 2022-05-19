@@ -20,7 +20,8 @@ class ImageController extends Controller
     public function create($id)
     {
         $validated = request()->validate([
-            'image' => 'required|max:5000'
+            'image' => 'required',
+            'image.*' => 'mimes:jpeg,png,jpg,gif,svg|max:5000'
         ]);
         $img = new FileUploadService();
         $img->uploadImages($validated['image'], $id);

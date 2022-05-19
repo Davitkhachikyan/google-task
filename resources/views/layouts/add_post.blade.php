@@ -21,8 +21,8 @@
         <input type="text" name="title"><span>Title</span><br><br>
         <input type="text" name="description"><span>Description</span><br><br>
         <input type="text" name="text"><span>Text</span><br><br>
-        <input type="file"  name="image[]" multiple>
-        <button class="bton"  type="submit">Add Post</button>
+        <input type="file" name="image[]" multiple>
+        <button class="bton" type="submit">Add Post</button>
     </form>
 </div>
 

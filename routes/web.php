@@ -31,6 +31,7 @@ Route::get('/search/query', [SearchController::class, 'query']);
 
 
 Route::group(['middleware' => ['admin']], function () {
+
     Route::get('admin', [AdminController::class, 'index'])->name('admin');
     Route::get('add-post', [AdminController::class, 'addPost'])->name('add-post-page');
     Route::post('posts/create', [PostController::class, 'create'])->name('add-post');
