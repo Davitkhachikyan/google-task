@@ -25,6 +25,6 @@
         </tr>
     </tbody>
 </table>
-<button class="button"><a class="btn-a" href={{route('add-post-page')}}>Add Product</a></button>
+<button class="button"><a class="btn-a" href={{route('add-post-page')}}>Add Post</a></button>
 
 @endsection

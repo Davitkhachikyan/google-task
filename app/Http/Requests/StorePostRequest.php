@@ -28,7 +28,7 @@ class StorePostRequest extends FormRequest
             'description' => 'required|min:5|max:25',
             'text' => 'required|min:5|max:255',
             'image' => 'required|max:5000'
-//            mimes:jpg,png,jpeg,gif,svg
+//                |mimes:jpg,png,jpeg,gif,svg
         ];
     }
 }
