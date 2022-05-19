@@ -18,18 +18,18 @@ class AdminController extends Controller
         return view('admin', compact('posts'));
     }
 
-    public function add_post()
+    public function addPost()
     {
         return view('layouts.add_post');
     }
 
-    public function update_post($id)
+    public function updatePost($id)
     {
         $post = Post::find($id);
         return view('layouts.update_post', compact('post'));
     }
 
-    public function create_image($id)
+    public function createImage($id)
     {
         return view('layouts.update_image', compact('id'));
     }

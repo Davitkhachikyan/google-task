@@ -1,17 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-    <!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-<div style="margin-bottom: 5px">
+<div>
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -22,20 +12,18 @@
         </div>
     @endif
     <form>
-        <input style="margin-left: 5px; border-radius: 5px" type="button" value="Go back!" onclick="history.back()">
+        <input class="bck" type="button" value="Go back!" onclick="history.back()">
     </form>
 </div>
-<div>
+<div class="form">
     <form method="post" action="{{route('add-post')}}" enctype ="multipart/form-data">
         @csrf
-        <input type="text" name="title">Title<br><br>
-        <input type="text" name="description">Description<br><br>
-        <input type="text" name="text">Text<br><br>
+        <input type="text" name="title"><span>Title</span><br><br>
+        <input type="text" name="description"><span>Description</span><br><br>
+        <input type="text" name="text"><span>Text</span><br><br>
         <input type="file"  name="image[]" multiple>
-        <button style="border-radius: 5px" type="submit">Add Product</button>
+        <button class="bton"  type="submit">Add Post</button>
     </form>
 </div>
-</body>
-</html>
 
 @endsection

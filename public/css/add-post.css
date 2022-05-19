@@ -1,0 +1,17 @@
+.form {
+    margin: 5px;
+}
+
+.bton {
+    border-radius: 5px
+}
+
+.bck {
+    margin-left: 5px;
+    border-radius: 5px
+}
+
+.form span {
+    margin-left: 10px;
+    font-family: 'Nunito', sans-serif
+}

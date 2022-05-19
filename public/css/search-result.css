@@ -1,0 +1,49 @@
+.img-div {
+    float: left;
+    padding: 5px
+}
+
+.form-input {
+    margin-left: 5px;
+    border-radius: 5px
+}
+
+.post {
+    margin-top:100px;
+    margin-bottom:20px;
+    float:left;
+    margin-left:20px;
+    background: white;
+    width: 200px;
+    height: 300px;
+    border-radius: 15px;
+    outline: 2px solid gray
+}
+
+#title {
+    text-align: center;
+    font-size: xx-large;
+    font-family: serif;
+}
+
+#desc {
+    text-align: center;
+    font-size: 25px;
+    font-family: serif;
+}
+
+#text {
+    text-align: center;
+    font-size: 18px;
+    font-family: serif;
+}
+
+.post-img {
+    display: flex;
+    justify-content: center;
+}
+
+.post-img a {
+    text-decoration: none;
+    color: #860000;
+}

@@ -5,15 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Image;
 use App\Models\Post;
 use App\Services\FileUploadService;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 
 class ImageController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index()
     {
         $id = $_GET['id'];
@@ -23,19 +19,26 @@ class ImageController extends Controller
 
     public function create($id)
     {
-        $data = request()->all();
+        $validated = request()->validate([
+            'image' => 'required'
+        ]);
         $img = new FileUploadService();
-        $img->uploadImages($data['image'], $id);
+        $img->uploadImages($validated['image'], $id);
         return redirect('admin');
     }
 
-    public function delete($id)
+    public function delete($id): RedirectResponse
     {
-        Image::where('id', $id)->delete();
-        return redirect('admin');
+        $image = Image::find($id);
+        $path = public_path('storage/images'). '/' . $image->name;
+            if($path) {
+                unlink($path);
+                $image->delete();
+            }
+        return redirect()->back();
     }
 
-    public function post_images($id)
+    public function postImages($id)
     {
         $images = Post::find($id)->images()->get()->toArray();
         return view('search.post_images', compact('images'));

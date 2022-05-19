@@ -1,0 +1,26 @@
+.button {
+    border-radius: 5px;
+    background-color: white;
+    color: black;
+    border: 2px solid #555555
+}
+
+.button:hover {
+    color: white;
+}
+
+.btn-a {
+    text-decoration: none;
+    color: black
+}
+
+.display {
+    width:100%
+}
+
+.tr td a {
+    text-decoration: none;
+    color:#860000;
+}
+
+

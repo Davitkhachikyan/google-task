@@ -1,0 +1,31 @@
+.back {
+    margin-left: 5px;
+    border-radius: 5px
+}
+
+.butn {
+    border-radius: 5px
+}
+
+.btn-a {
+    text-decoration: none;
+    color: black
+}
+
+.dv {
+    margin: 10px;
+}
+
+.butn-a {
+    text-decoration: none;
+    color: black
+}
+
+.image {
+    border: solid 1px #1a202c;
+    border-radius: 10px;
+    width: 300px;
+    height: 200px;
+}
+
+

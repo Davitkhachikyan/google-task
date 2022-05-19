@@ -11,7 +11,7 @@ class StorePostRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -21,13 +21,14 @@ class StorePostRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'title' => 'required|min:5|max:15',
             'description' => 'required|min:5|max:25',
             'text' => 'required|min:5|max:255',
             'image' => 'required|max:5000'
+//            mimes:jpg,png,jpeg,gif,svg
         ];
     }
 }

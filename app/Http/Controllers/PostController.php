@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePostRequest;
+use App\Models\Image;
 use App\Models\Post;
 use App\Services\FileUploadService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-
 
 class PostController extends Controller
 {
@@ -37,10 +37,10 @@ class PostController extends Controller
         return redirect('admin');
     }
 
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        if (isset($request->id)) {
-            $post = Post::find($request->id);
+        if (isset($id)) {
+            $post = Post::find($id);
         }
         $data = $request->all();
         if (isset($post)) {
@@ -52,6 +52,16 @@ class PostController extends Controller
     public function delete($id): RedirectResponse
     {
         Post::where('id', $id)->delete();
+        $images = Image::where('post_id', $id)->get();
+        if(count($images)) {
+            foreach ($images as $image) {
+                $path = public_path('storage/images'). '/' . $image->name;
+                if($path) {
+                    unlink($path);
+                    $image->delete();
+                }
+            }
+        }
         return redirect()->back();
     }
 }

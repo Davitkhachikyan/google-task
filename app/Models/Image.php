@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @method static where(string $string, $id)
+ * @method static find($id)
  * @property mixed $post_id
  * @property mixed $name
  */
